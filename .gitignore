@@ -3,8 +3,11 @@
 *.class
 target
 *.log
-*.jar
 *.zip
 logs
 *.gz
 
+# Package Files #
+*.jar
+*.war
+*.ear
