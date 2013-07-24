@@ -54,7 +54,7 @@ fi
 
 mkdir -p $BASE_REPO_DIR/local.yum.repos.d
 
-wget https://bitbucket.org/dstreev/hwx-ps-utils/raw/f7606b83841acfbcc6030dd37676863e416bf6f2/templates/ambari.repo -O $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
+wget https://bitbucket.org/dstreev/hwx-ps-utils/raw/e0710e65ba088bac15e72ccdc417f9718a0bc08d/templates/ambari.repo -O $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
 
 wget https://bitbucket.org/dstreev/hwx-ps-utils/raw/f318deb921f097938287b65e947778ece06cf74b/templates/CentOS-Base.repo -O $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
 
@@ -103,7 +103,7 @@ reposync -r extras -p $BASE_REPO_DIR/centos/6/extras/x86_64 --norepopath
 reposync -r centosplus -p $BASE_REPO_DIR/centos/6/centosplus/x86_64 --norepopath
 reposync -r contrib -p $BASE_REPO_DIR/centos/6/contrib/x86_64 --norepopath
 
-if [ -d $BASE_REPO_DIR/ambari/centos6/RPM-GPG-KEY ]; then
+if [ ! -d $BASE_REPO_DIR/ambari/centos6/RPM-GPG-KEY ]; then
 mkdir -p $BASE_REPO_DIR/ambari/centos6/RPM-GPG-KEY
 fi
 
