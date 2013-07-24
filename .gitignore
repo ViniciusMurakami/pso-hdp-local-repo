@@ -6,6 +6,8 @@ target
 *.zip
 logs
 *.gz
+*.*swp
+*.orig
 
 # Package Files #
 *.jar

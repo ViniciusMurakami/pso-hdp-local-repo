@@ -48,6 +48,17 @@ if [ ! -f $BASE_REPO_DIR/jdk/jdk-6u31-linux-x64.bin ]; then
 wget -nv http://public-repo-1.hortonworks.com/ARTIFACTS/jdk-6u31-linux-x64.bin -O $BASE_REPO_DIR/jdk/jdk-6u31-linux-x64.bin
 fi
 
+if [ -d $BASE_REPO_DIR/local.yum.repos.d ]; then
+rm $BASE_REPO_DIR/local.yum.repos.d
+fi
+
+mkdir -p $BASE_REPO_DIR/local.yum.repos.d
+
+wget https://bitbucket.org/dstreev/hwx-ps-utils/raw/f7606b83841acfbcc6030dd37676863e416bf6f2/templates/ambari.repo -O $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
+
+sed -i bak -e "s:!local.repo.host!:`hostname`:g" $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
+sed -i bak -e "s:!local.repo.host!:`hostname`:g" $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
+
 # ambari-1.x
 # baseurl=http://public-repo-1.hortonworks.com/ambari/centos6/1.x/GA
 if [ -d  $BASE_REPO_DIR/ambari/centos6/1.x/GA ]; then
@@ -84,10 +95,20 @@ reposync -r HDP-UTILS-1.1.0.15 -p $BASE_REPO_DIR/HDP-UTILS-1.1.0.15/repos/centos
 reposync -r HDP-1.3.0.0 -p $BASE_REPO_DIR/HDP/centos6/1.x/GA/1.3.0.0 --norepopath
 reposync -r Updates-ambari-1.2.4.9 -p $BASE_REPO_DIR/ambari/centos6/1.x/updates/1.2.4.9
 reposync -r epel -p $BASE_REPO_DIR/pub/epel/6/x86_64 --norepopath
+reposync -r base -p $BASE_REPO_DIR/centos/6/os/x86_64 --norepopath
+reposync -r updates -p $BASE_REPO_DIR/centos/6/updates/x86_64 --norepopath
+reposync -r extras -p $BASE_REPO_DIR/centos/6/extras/x86_64 --norepopath
+reposync -r centosplus -p $BASE_REPO_DIR/centos/6/centosplus/x86_64 --norepopath
+reposync -r contrib -p $BASE_REPO_DIR/centos/6/contrib/x86_64 --norepopath
 
 createrepo --update $BASE_REPO_DIR/ambari/centos6/1.x/GA
 createrepo --update $BASE_REPO_DIR/HDP-UTILS-1.1.0.15/repos/centos6
 createrepo --update $BASE_REPO_DIR/HDP/centos6/1.x/GA/1.3.0.0
 createrepo --update $BASE_REPO_DIR/ambari/centos6/1.x/updates/1.2.4.9
 createrepo --update $BASE_REPO_DIR/pub/epel/6/x86_64
+createrepo --update $BASE_REPO_DIR/centos/6/x86_64
+createrepo --update $BASE_REPO_DIR/centos/6/updates/x86_64
+createrepo --update $BASE_REPO_DIR/centos/6/extras/x86_64
+createrepo --update $BASE_REPO_DIR/centos/6/centosplus/x86_64
+createrepo --update $BASE_REPO_DIR/centos/6/contrib/x86_64
 
