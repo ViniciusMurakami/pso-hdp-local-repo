@@ -54,6 +54,7 @@ fi
 
 mkdir -p $BASE_REPO_DIR/local.yum.repos.d
 
+# Fix for github
 wget https://bitbucket.org/dstreev/hwx-ps-utils/raw/e0710e65ba088bac15e72ccdc417f9718a0bc08d/templates/ambari.repo -O $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
 
 wget https://bitbucket.org/dstreev/hwx-ps-utils/raw/f318deb921f097938287b65e947778ece06cf74b/templates/CentOS-Base.repo -O $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
@@ -63,33 +64,44 @@ sed -i bak -e "s:!local.repo.host!:`hostname`:g" $BASE_REPO_DIR/local.yum.repos.
 
 # ambari-1.x
 # baseurl=http://public-repo-1.hortonworks.com/ambari/centos6/1.x/GA
-if [ -d  $BASE_REPO_DIR/ambari/centos6/1.x/GA ]; then
+if [ ! -d  $BASE_REPO_DIR/ambari/centos6/1.x/GA ]; then
 mkdir -p $BASE_REPO_DIR/ambari/centos6/1.x/GA
 fi
 
 # HDP-UTILS-1.1.0.15
 # http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.15/repos/centos6
-if [ -d  $BASE_REPO_DIR/HDP-UTILS-1.1.0.15/repos/centos6 ]; then
+if [ ! -d  $BASE_REPO_DIR/HDP-UTILS-1.1.0.15/repos/centos6 ]; then
 mkdir -p $BASE_REPO_DIR/HDP-UTILS-1.1.0.15/repos/centos6
 fi
 
 # Updates-ambari-1.2.4.9
 # baseurl=http://public-repo-1.hortonworks.com/ambari/centos6/1.x/updates/1.2.4.9
-if [ -d  $BASE_REPO_DIR/ambari/centos6/1.x/updates/1.2.4.9 ]; then
+if [ ! -d  $BASE_REPO_DIR/ambari/centos6/1.x/updates/1.2.4.9 ]; then
 mkdir -p $BASE_REPO_DIR/ambari/centos6/1.x/updates/1.2.4.9
 fi
 
 # epel
 # baseurl=http://download.fedoraproject.org/pub/epel/6/$basearch (x86_64)
-if [ -d  $BASE_REPO_DIR/pub/epel/6/x86_64 ]; then
+if [ ! -d  $BASE_REPO_DIR/pub/epel/6/x86_64 ]; then
 mkdir -p $BASE_REPO_DIR/pub/epel/6/x86_64
 fi
 
 # HDP-1.3.0.0
 # http://public-repo-1.hortonworks.com/HDP/centos6/1.x/GA/1.3.0.0
-if [ -d  $BASE_REPO_DIR/HDP/centos6/1.x/GA/1.3.0.0 ]; then
+if [ ! -d  $BASE_REPO_DIR/HDP/centos6/1.x/GA/1.3.0.0 ]; then
 mkdir -p $BASE_REPO_DIR/HDP/centos6/1.x/GA/1.3.0.0
 fi
+
+# Need to get the Ambari templates
+if [ -d $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos ]; then
+rm -rf $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos
+fi
+
+# Get fresh copies
+mkdir -p $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos
+wget "" -O $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
+
+
 
 # Install the repo for Ambari and HDP
 reposync -r ambari-1.x -p $BASE_REPO_DIR/ambari/centos6/1.x/GA --norepopath
