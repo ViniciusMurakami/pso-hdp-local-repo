@@ -55,9 +55,9 @@ fi
 mkdir -p $BASE_REPO_DIR/local.yum.repos.d
 
 # Fix for github
-wget https://bitbucket.org/dstreev/hwx-ps-utils/raw/e0710e65ba088bac15e72ccdc417f9718a0bc08d/templates/ambari.repo -O $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
+wget https://raw.github.com/dstreev/HWX-PS-Utils/master/scripts/local.repo.n.ambari/templates/ambari.repo -O $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
 
-wget https://bitbucket.org/dstreev/hwx-ps-utils/raw/f318deb921f097938287b65e947778ece06cf74b/templates/CentOS-Base.repo -O $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
+wget https://raw.github.com/dstreev/HWX-PS-Utils/master/scripts/local.repo.n.ambari/templates/CentOS-Base.repo -O $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
 
 sed -i bak -e "s:!local.repo.host!:`hostname`:g" $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
 sed -i bak -e "s:!local.repo.host!:`hostname`:g" $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
@@ -99,7 +99,7 @@ fi
 
 # Get fresh copies
 mkdir -p $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos
-wget "" -O $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
+wget https://raw.github.com/dstreev/HWX-PS-Utils/master/scripts/local.repo.n.ambari/templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml -O $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
 
 
 
