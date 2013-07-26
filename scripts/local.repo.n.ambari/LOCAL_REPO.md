@@ -7,9 +7,9 @@ This "local" repository server must be accessible to the servers in the cluster.
 ## Installation Steps - NOTE: You DO NOT need everything in this project, only the 3 scripts listed below.
 
 1. Retrieve these 3 scripts:
-	1. [local_repo_config.sh][] - Copy to your local repository server.
-	2. [install_local_repos.sh][] - Copy to your target Ambari server.
-	3. [post_yum_ambari_install.sh][] - Copy to your target Ambari server.
+	1. [local_repo_config.sh](local_repo_config.sh) - Copy to your local repository server.
+	2. [install_local_repos.sh](install_local_repos.sh) - Copy to your target Ambari server.
+	3. [post_yum_ambari_install.sh](post_yum_ambari_install.sh) - Copy to your target Ambari server.
 2. Configure the local repository. (local_repo_config.sh)
 3. Install \*.repo files on Ambari Server (pre ambari-server installation). (install_local_repos.sh)
 4. Install Ambari-Server (yum install ambari-server). DON'T start it yet.
