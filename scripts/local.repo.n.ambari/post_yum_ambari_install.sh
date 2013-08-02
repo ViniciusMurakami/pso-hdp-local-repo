@@ -1,9 +1,29 @@
 #!/bin/bash
 
-# This script is meant to be run AFTER the ambari-server has
-#  been install via yum AND BEFORE any ambari setup OR startup.
+# THIS SCRIPT SHOULD BE RUN ON THE AMBARI SERVER
+#
+#  ---- AFTER the Ambari-Server has been installed (yum install ambari-server)
+#  -----   AND BEFORE ambari-server start
+#
 
 # Copy over the repoinfo.xml to the stacks area of the newly
 #   install ambari server
+
+if [ $# -lt 1 ]; then
+echo " Please specify the Local Repo's host FQDN
+
+	$0 repo.mycompany.com
+	
+"
+exit -1
+fi
+
+STACK_REPOS_TEMPLATE_DIR=/var/lib/ambari-server/resources/stacks/HDPLocal
+
+# This repo template should already have been "adjusted" for use 
+# by this cluster during the Local repo configuration.
+
+wget http://$1/templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml -O $STACK_REPOS_TEMPLATE_DIR/1.3.0/repos/repoinfo.xml
+
 
 

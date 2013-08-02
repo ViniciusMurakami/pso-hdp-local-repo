@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Establish a Local Repository with the appropriate mirrors and templates
-#  that can be used by the cluster.
+#  that can be used by the cluster.  This script will use `hostname` to replace
+#  all references in templates to the server this script is being run on. make
+#  sure the hostname is correct and resolvable from ALL cluster hosts that will
+#  need this repository.
 
 # Ensure script being run as root.
 if [ `whoami` != "root" ]; then
@@ -36,7 +39,7 @@ yum -y install createrepo
 BASE_REPO_DIR="/var/www/html/repos"
 
 # Copy the repo templates to the httpd server
-if [ -d  $BASE_REPO_DIR/local.yum.repos.d ]; then
+if [ ! -d  $BASE_REPO_DIR/local.yum.repos.d ]; then
 mkdir -p $BASE_REPO_DIR/local.yum.repos.d
 fi
 
@@ -54,7 +57,6 @@ fi
 
 mkdir -p $BASE_REPO_DIR/local.yum.repos.d
 
-# Fix for github
 wget https://raw.github.com/dstreev/HWX-PS-Utils/master/scripts/local.repo.n.ambari/templates/ambari.repo -O $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
 
 wget https://raw.github.com/dstreev/HWX-PS-Utils/master/scripts/local.repo.n.ambari/templates/CentOS-Base.repo -O $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
