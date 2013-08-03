@@ -25,5 +25,5 @@ STACK_REPOS_TEMPLATE_DIR=/var/lib/ambari-server/resources/stacks/HDPLocal
 
 wget http://$1/templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml -O $STACK_REPOS_TEMPLATE_DIR/1.3.0/repos/repoinfo.xml
 
-
+wget http://$1/repos/jdk/jdk-6u31-linux-x64.bin -O /var/lib/ambari-server/resources/jdk-6u31-linux-x64.bin
 
