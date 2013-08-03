@@ -101,20 +101,66 @@ fi
 
 # Get fresh copies
 mkdir -p $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos
+if [ -f $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml ];
+then
+# Cleanup old copy.
+rm $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
+fi
 wget https://raw.github.com/dstreev/HWX-PS-Utils/master/scripts/local.repo.n.ambari/templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml -O $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
+sed -i bak -e "s:!local.repo.host!:`hostname`:g" $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
 
 
 
 # Install the repo for Ambari and HDP
+echo ""
+echo "================================="
+echo "Syncing ambari-1.x repo..."
+echo "---------------------------------"
 reposync -r ambari-1.x -p $BASE_REPO_DIR/ambari/centos6/1.x/GA --norepopath
+echo ""
+echo "================================="
+echo "Syncing HDP-UTILS-1.1.0.15 repo..."
+echo "---------------------------------"
 reposync -r HDP-UTILS-1.1.0.15 -p $BASE_REPO_DIR/HDP-UTILS-1.1.0.15/repos/centos6 --norepopath
+echo ""
+echo "================================="
+echo "Syncing HDP-1.3.0.0 repo..."
+echo "---------------------------------"
 reposync -r HDP-1.3.0.0 -p $BASE_REPO_DIR/HDP/centos6/1.x/GA/1.3.0.0 --norepopath
+echo ""
+echo "================================="
+echo "Syncing Updates-ambari-1.2.4.9 repo..."
+echo "---------------------------------"
 reposync -r Updates-ambari-1.2.4.9 -p $BASE_REPO_DIR/ambari/centos6/1.x/updates/1.2.4.9
+echo ""
+echo "================================="
+echo "Syncing epel repo..."
+echo "---------------------------------"
 reposync -r epel -p $BASE_REPO_DIR/pub/epel/6/x86_64 --norepopath
+echo ""
+echo "================================="
+echo "Syncing base repo..."
+echo "---------------------------------"
 reposync -r base -p $BASE_REPO_DIR/centos/6/os/x86_64 --norepopath
+echo ""
+echo "================================="
+echo "Syncing updates repo..."
+echo "---------------------------------"
 reposync -r updates -p $BASE_REPO_DIR/centos/6/updates/x86_64 --norepopath
+echo ""
+echo "================================="
+echo "Syncing extras repo..."
+echo "---------------------------------"
 reposync -r extras -p $BASE_REPO_DIR/centos/6/extras/x86_64 --norepopath
+echo ""
+echo "================================="
+echo "Syncing centosplus repo..."
+echo "---------------------------------"
 reposync -r centosplus -p $BASE_REPO_DIR/centos/6/centosplus/x86_64 --norepopath
+echo ""
+echo "================================="
+echo "Syncing contrib repo..."
+echo "---------------------------------"
 reposync -r contrib -p $BASE_REPO_DIR/centos/6/contrib/x86_64 --norepopath
 
 if [ ! -d $BASE_REPO_DIR/ambari/centos6/RPM-GPG-KEY ]; then
@@ -123,14 +169,56 @@ fi
 
 wget http://public-repo-1.hortonworks.com/ambari/centos6/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins -O $BASE_REPO_DIR/ambari/centos6/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
 
+echo ""
+echo "================================="
+echo "Updating Local Repo DB for ambari..."
+echo "---------------------------------"
 createrepo --update $BASE_REPO_DIR/ambari/centos6/1.x/GA
+echo ""
+echo "================================="
+echo "Updating Local Repo DB for HDP-UTILS-1.1.0.15..."
+echo "---------------------------------"
 createrepo --update $BASE_REPO_DIR/HDP-UTILS-1.1.0.15/repos/centos6
+echo ""
+echo "================================="
+echo "Updating Local Repo DB for HDP-1.3.0.0..."
+echo "---------------------------------"
 createrepo --update $BASE_REPO_DIR/HDP/centos6/1.x/GA/1.3.0.0
+echo ""
+echo "================================="
+echo "Updating Local Repo DB for ambari-1.2.4.9..."
+echo "---------------------------------"
 createrepo --update $BASE_REPO_DIR/ambari/centos6/1.x/updates/1.2.4.9
+echo ""
+echo "================================="
+echo "Updating Local Repo DB for epel..."
+echo "---------------------------------"
 createrepo --update $BASE_REPO_DIR/pub/epel/6/x86_64
+echo ""
+echo "================================="
+echo "Updating Local Repo DB for base..."
+echo "---------------------------------"
 createrepo --update $BASE_REPO_DIR/centos/6/os/x86_64
+echo ""
+echo "================================="
+echo "Updating Local Repo DB for updates..."
+echo "---------------------------------"
 createrepo --update $BASE_REPO_DIR/centos/6/updates/x86_64
+echo ""
+echo "================================="
+echo "Updating Local Repo DB for extras..."
+echo "---------------------------------"
 createrepo --update $BASE_REPO_DIR/centos/6/extras/x86_64
+echo ""
+echo "================================="
+echo "Updating Local Repo DB for centosplus..."
+echo "---------------------------------"
 createrepo --update $BASE_REPO_DIR/centos/6/centosplus/x86_64
+echo ""
+echo "================================="
+echo "Updating Local Repo DB for contrib..."
+echo "---------------------------------"
 createrepo --update $BASE_REPO_DIR/centos/6/contrib/x86_64
-
+echo ""
+echo ""
+echo "******* Local repo configured..."
