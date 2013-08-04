@@ -26,8 +26,12 @@
       <baseurl>http://!local.repo.host!/repos/pub/epel/6/x86_64</baseurl>
       <repoid>HDP-epel</repoid>
       <reponame>HDP-epel</reponame>
-      <!-- mirrorslist><![CDATA[http://mirrors.fedoraproject.org/mirrorlist?repo=epel-6&arch=$basearch]]></mirrorslist -->
     </repo>
+	<repo>
+		<baseurl>http://!local.repo.host!/repos/centos/$releasever/os/$basearch/</baseurl>
+		<repoid>HDP-base</repoid>
+		<reponame>HDP-base</reponame>
+	</repo>
     <repo>
     	<baseurl>http://!local.repo.host!/repos/centos/6/updates/x86_64</baseurl>
     	<repoid>HDP-updates</repoid>
