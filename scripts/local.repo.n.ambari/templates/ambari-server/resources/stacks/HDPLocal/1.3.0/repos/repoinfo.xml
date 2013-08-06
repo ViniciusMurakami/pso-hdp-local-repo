@@ -23,17 +23,17 @@
       <reponame>HDP</reponame>
     </repo>
     <repo>
-      <baseurl>http://!local.repo.host!/repos/pub/epel/$releasever/$basearch/</baseurl>
+      <baseurl>http://!local.repo.host!/repos/pub/epel/6/$basearch/</baseurl>
       <repoid>HDP-epel</repoid>
       <reponame>HDP-epel</reponame>
     </repo>
 	<repo>
-		<baseurl>http://!local.repo.host!/repos/centos/$releasever/os/$basearch/</baseurl>
+		<baseurl>http://!local.repo.host!/repos/centos/6/os/$basearch/</baseurl>
 		<repoid>HDP-base</repoid>
 		<reponame>HDP-base</reponame>
 	</repo>
     <repo>
-    	<baseurl>http://!local.repo.host!/repos/centos/$releasever/updates/$basearch/</baseurl>
+    	<baseurl>http://!local.repo.host!/repos/centos/6/updates/$basearch/</baseurl>
     	<repoid>HDP-updates</repoid>
     	<reponame>HDP-updates</reponame>
     </repo>
@@ -45,17 +45,17 @@
       <reponame>HDP</reponame>
     </repo>
     <repo>
-      <baseurl>http://!local.repo.host!/repos/pub/epel/$releasever/$basearch/</baseurl>
+      <baseurl>http://!local.repo.host!/repos/pub/epel/5/$basearch/</baseurl>
       <repoid>HDP-epel</repoid>
       <reponame>HDP-epel</reponame>
     </repo>
 	<repo>
-		<baseurl>http://!local.repo.host!/repos/centos/$releasever/os/$basearch/</baseurl>
+		<baseurl>http://!local.repo.host!/repos/centos/5/os/$basearch/</baseurl>
 		<repoid>HDP-base</repoid>
 		<reponame>HDP-base</reponame>
 	</repo>
     <repo>
-    	<baseurl>http://!local.repo.host!/repos/centos/$releasever/updates/$basearch/</baseurl>
+    	<baseurl>http://!local.repo.host!/repos/centos/5/updates/$basearch/</baseurl>
     	<repoid>HDP-updates</repoid>
     	<reponame>HDP-updates</reponame>
     </repo>
@@ -67,17 +67,17 @@
       <reponame>HDP</reponame>
     </repo>
     <repo>
-      <baseurl>http://!local.repo.host!/repos/pub/epel/$releasever/$basearch/</baseurl>
+      <baseurl>http://!local.repo.host!/repos/pub/epel/6/$basearch/</baseurl>
       <repoid>HDP-epel</repoid>
       <reponame>HDP-epel</reponame>
     </repo>
 	<repo>
-		<baseurl>http://!local.repo.host!/repos/centos/$releasever/os/$basearch/</baseurl>
+		<baseurl>http://!local.repo.host!/repos/centos/6/os/$basearch/</baseurl>
 		<repoid>HDP-base</repoid>
 		<reponame>HDP-base</reponame>
 	</repo>
     <repo>
-    	<baseurl>http://!local.repo.host!/repos/centos/$releasever/updates/$basearch/</baseurl>
+    	<baseurl>http://!local.repo.host!/repos/centos/6/updates/$basearch/</baseurl>
     	<repoid>HDP-updates</repoid>
     	<reponame>HDP-updates</reponame>
     </repo>
@@ -94,12 +94,12 @@
       <reponame>HDP-epel</reponame>
     </repo>
 	<repo>
-		<baseurl>http://!local.repo.host!/repos/centos/$releasever/os/$basearch/</baseurl>
+		<baseurl>http://!local.repo.host!/repos/centos/5/os/$basearch/</baseurl>
 		<repoid>HDP-base</repoid>
 		<reponame>HDP-base</reponame>
 	</repo>
     <repo>
-    	<baseurl>http://!local.repo.host!/repos/centos/$releasever/updates/$basearch/</baseurl>
+    	<baseurl>http://!local.repo.host!/repos/centos/5/updates/$basearch/</baseurl>
     	<repoid>HDP-updates</repoid>
     	<reponame>HDP-updates</reponame>
     </repo>
@@ -111,17 +111,17 @@
       <reponame>HDP</reponame>
     </repo>
     <repo>
-      <baseurl>http://!local.repo.host!/repos/pub/epel/$releasever/$basearch/</baseurl>
+      <baseurl>http://!local.repo.host!/repos/pub/epel/6/$basearch/</baseurl>
       <repoid>HDP-epel</repoid>
       <reponame>HDP-epel</reponame>
     </repo>
 	<repo>
-		<baseurl>http://!local.repo.host!/repos/centos/$releasever/os/$basearch/</baseurl>
+		<baseurl>http://!local.repo.host!/repos/centos/6/os/$basearch/</baseurl>
 		<repoid>HDP-base</repoid>
 		<reponame>HDP-base</reponame>
 	</repo>
     <repo>
-    	<baseurl>http://!local.repo.host!/repos/centos/$releasever/updates/$basearch/</baseurl>
+    	<baseurl>http://!local.repo.host!/repos/centos/6/updates/$basearch/</baseurl>
     	<repoid>HDP-updates</repoid>
     	<reponame>HDP-updates</reponame>
     </repo>
@@ -133,17 +133,17 @@
       <reponame>HDP</reponame>
     </repo>
     <repo>
-      <baseurl>http://!local.repo.host!/repos/pub/epel/$releasever/$basearch/</baseurl>
+      <baseurl>http://!local.repo.host!/repos/pub/epel/5/$basearch/</baseurl>
       <repoid>HDP-epel</repoid>
       <reponame>HDP-epel</reponame>
     </repo>
 	<repo>
-		<baseurl>http://!local.repo.host!/repos/centos/$releasever/os/$basearch/</baseurl>
+		<baseurl>http://!local.repo.host!/repos/centos/5/os/$basearch/</baseurl>
 		<repoid>HDP-base</repoid>
 		<reponame>HDP-base</reponame>
 	</repo>
     <repo>
-    	<baseurl>http://!local.repo.host!/repos/centos/$releasever/updates/$basearch/</baseurl>
+    	<baseurl>http://!local.repo.host!/repos/centos/5/updates/$basearch/</baseurl>
     	<repoid>HDP-updates</repoid>
     	<reponame>HDP-updates</reponame>
     </repo>
