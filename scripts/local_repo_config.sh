@@ -12,6 +12,10 @@ echo "Must be root to run this script."
 exit -1
 fi
 
+HOSTNAME=${1:-`hostname`}
+
+echo "Using $HOSTNAME as the hostname for the repo server."
+
 # Determine if httpd has been installed
 HTTPD=`yum list installed | grep httpd`
 if [ "$HTTPD" == "" ]; then
@@ -61,8 +65,8 @@ wget https://raw.github.com/dstreev/HWX-PS-Utils/master/scripts/local.repo.n.amb
 
 wget https://raw.github.com/dstreev/HWX-PS-Utils/master/scripts/local.repo.n.ambari/templates/CentOS-Base.repo -O $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
 
-sed -i bak -e "s:!local.repo.host!:`hostname`:g" $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
-sed -i bak -e "s:!local.repo.host!:`hostname`:g" $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
+sed -i bak -e "s:!local.repo.host!:$HOSTNAME:g" $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
+sed -i bak -e "s:!local.repo.host!:$HOSTNAME:g" $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
 
 # ambari-1.x
 # baseurl=http://public-repo-1.hortonworks.com/ambari/centos6/1.x/GA
@@ -107,7 +111,7 @@ then
 rm $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
 fi
 wget https://raw.github.com/dstreev/HWX-PS-Utils/master/scripts/local.repo.n.ambari/templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml -O $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
-sed -i bak -e "s:!local.repo.host!:`hostname`:g" $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
+sed -i bak -e "s:!local.repo.host!:$HOSTNAME:g" $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
 
 
 
