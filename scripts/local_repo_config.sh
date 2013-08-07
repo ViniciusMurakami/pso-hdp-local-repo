@@ -117,7 +117,9 @@ then
 # Cleanup old copy.
 rm $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
 fi
+
 wget https://raw.github.com/hortonworks/pso-hdp-local-repo/$GIT_BRANCH/templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml -O $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
+
 sed -i bak -e "s:!local.repo.host!:$HOSTNAME:g" $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
 
 
