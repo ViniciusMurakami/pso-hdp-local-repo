@@ -2,6 +2,8 @@
 
 [License](./LICENSE)
 
+NOTE: To support future version of HDP, this repo has branches for the different hdp distributions.  Make sure you are using the desired branch.
+
 Configuring a local repository is necessary when the cluster doesn't have access to the internet OR the shear volume of cluster hosts would put a load on the internet connection that isn't desirable.  To begin this process, you need to establish a separate RHEL/CentOS server that "does" have access to the internet, at least temporarily, to sync with the remote repositories that we'll need to install the cluster.
 
 This "local" repository server must be accessible to the servers in the cluster.
