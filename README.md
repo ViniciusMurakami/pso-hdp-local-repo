@@ -24,7 +24,12 @@ This "local" repository server must be accessible to the servers in the cluster.
 
 [Script - Local Repo Config](scripts/local_repo_config.sh)
 
-Run this on a RHEL/CentOS server that will be the local repository.  The script will check/install httpd, install the needed repo's in /etc/yum.repos.d and then create local sync'd copies that can be referenced for the local installation. This script needs to run as root (or sudo).
+Run this on a RHEL/CentOS server that will be the local repository.  Run this script as follows with hostname(FQDN) as the command line parameter:
+
+./local_repo_config.sh hostname
+
+If the hostname is not supplied, the script will automatically read the hostname that is returned by the system. The script will check/install httpd, install the needed repo's in /etc/yum.repos.d and then create local sync'd copies that can be referenced for the local installation. This script needs to run as root (or sudo).
+
 
 [Script - Install Local Repos](scripts/install_local_repos.sh)
 
