@@ -12,7 +12,14 @@ echo "Must be root to run this script."
 exit -1
 fi
 
+GIT_BRANCH=master
+
 HOSTNAME=${1:-`hostname`}
+
+if [ "$HOSTNAME" == "localhost" ]; then
+  echo "You need to fix your machines hostname.  It's being reported as 'localhost', which is distort the templates used later on"
+  exit -1
+fi 
 
 echo "Using $HOSTNAME as the hostname for the repo server."
 
@@ -61,9 +68,9 @@ fi
 
 mkdir -p $BASE_REPO_DIR/local.yum.repos.d
 
-wget https://raw.github.com/dstreev/HWX-PS-Utils/master/templates/ambari.repo -O $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
+wget https://raw.github.com/hortonworks/pso-hdp-local-repo/$GIT_BRANCH/templates/ambari.repo -O $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
 
-wget https://raw.github.com/dstreev/HWX-PS-Utils/master/templates/CentOS-Base.repo -O $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
+wget https://raw.github.com/hortonworks/pso-hdp-local-repo/$GIT_BRANCH/templates/CentOS-Base.repo -O $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
 
 sed -i bak -e "s:!local.repo.host!:$HOSTNAME:g" $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
 sed -i bak -e "s:!local.repo.host!:$HOSTNAME:g" $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
@@ -110,7 +117,7 @@ then
 # Cleanup old copy.
 rm $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
 fi
-wget https://raw.github.com/dstreev/HWX-PS-Utils/master/templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml -O $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
+wget https://raw.github.com/hortonworks/pso-hdp-local-repo/$GIT_BRANCH/templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml -O $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
 sed -i bak -e "s:!local.repo.host!:$HOSTNAME:g" $BASE_REPO_DIR/../templates/ambari-server/resources/stacks/HDPLocal/1.3.0/repos/repoinfo.xml
 
 
