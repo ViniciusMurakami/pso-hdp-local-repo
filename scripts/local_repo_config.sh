@@ -12,7 +12,7 @@ echo "Must be root to run this script."
 exit -1
 fi
 
-GIT_BRANCH=master
+GIT_BRANCH=hdp_1.3.0
 
 HOSTNAME=${1:-`hostname`}
 
