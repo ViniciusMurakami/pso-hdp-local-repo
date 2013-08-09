@@ -32,3 +32,15 @@ This script will fetch repos location files from the 'local_repo_config.sh' serv
 
 [Script - Ambari Templates for Local Repo](scripts/post-yum-ambari-install.sh)
 
+## FAQs:
+
+Q: What is local repository server?
+
+Ans: Hadoop cluster setup requires installation and configuration of binaries from various projects. Before setting up the Hadoop cluster it is a good practice to download all the binaries from multiple sources in to a local machine and create a local repository. This local machine having local code repository is called local repository server. This local repository server is very useful if the hadoop cluster is behind a firewall and cannot access internet during installation process. Using a local repository will allow the installation process to look for the binaries in the local machine instead of try to download them from internet repositories.
+
+If you are trying to set up a test virtual machine based cluster on one mac/pc, one of the virtual machines can be used as a local repository. 
+
+
+Q: What is target Ambari server?
+
+And: Target Ambari server is the server which is used as the central server to install and configure hadoop cluster environment. Ambari has user interface that allows installation and set up of hadoop cluster. During the installation process, binaries will be pulled from local repository server instead of going to internet when you use the scripts in this git.
