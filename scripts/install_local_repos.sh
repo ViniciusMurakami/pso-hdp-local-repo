@@ -19,8 +19,10 @@ DATE=`date +%y%m%d%H%M`
 
 mkdir /etc/yum.repos.d/$DATE
 
+# Remove any unnecessary repos from yum.
 mv /etc/yum.repos.d/*.* /etc/yum.repos.d/$DATE
 
+# Get the repos tuned for the local repo and place them in the /etc/yum.repos.d directory for yum.
 wget http://$1/repos/local.yum.repos.d/ambari.repo -O /etc/yum.repos.d/ambari.repo
 wget http://$1/repos/local.yum.repos.d/CentOS-Base.repo -O /etc/yum.repos.d/CentOS_Base.repo
 
