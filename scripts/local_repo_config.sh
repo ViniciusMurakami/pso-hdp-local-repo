@@ -132,6 +132,13 @@ echo "---------------------------------"
 reposync -r HDP-1.x -p $BASE_REPO_DIR/HDP/centos6/1.x/GA --norepopath
 echo ""
 echo "================================="
+echo "Syncing HDP-1.x Updates repo..."
+echo "---------------------------------"
+reposync -r Updates-HDP-1.x -p $BASE_REPO_DIR/HDP/centos6/1.x/updates --norepopath
+
+
+echo ""
+echo "================================="
 echo "Syncing Updates-ambari-1.x repo..."
 echo "---------------------------------"
 reposync -r Updates-ambari-1.x -p $BASE_REPO_DIR/ambari/centos6/1.x/updates
@@ -211,6 +218,12 @@ echo "================================="
 echo "Updating Local Repo DB for HDP-1.x.."
 echo "---------------------------------"
 createrepo --update $BASE_REPO_DIR/HDP/centos6/1.x/GA
+echo ""
+echo "================================="
+echo "Updating Locel Repo HDP-1.x Updates.."
+echo "---------------------------------"
+createrepo --update $BASE_REPO_DIR/HDP/centos6/1.x/updates
+
 echo ""
 echo "================================="
 echo "Updating Local Repo DB for ambari-1.x..."
