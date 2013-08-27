@@ -130,6 +130,7 @@ echo "================================="
 echo "Syncing HDP-1.x repo..."
 echo "---------------------------------"
 reposync -r HDP-1.x -p $BASE_REPO_DIR/HDP/centos6/1.x/GA --norepopath
+
 echo ""
 echo "================================="
 echo "Syncing HDP-1.x Updates repo..."
@@ -220,9 +221,9 @@ echo "---------------------------------"
 createrepo --update $BASE_REPO_DIR/HDP/centos6/1.x/GA
 echo ""
 echo "================================="
-echo "Updating Locel Repo HDP-1.x Updates.."
+echo "Updating Locel Repo HDP-1.x Updates.. (1.3.2.0 specifically is required for Ambari provisioning)"
 echo "---------------------------------"
-createrepo --update $BASE_REPO_DIR/HDP/centos6/1.x/updates
+createrepo --update $BASE_REPO_DIR/HDP/centos6/1.x/updates/1.3.2.0
 
 echo ""
 echo "================================="
