@@ -22,6 +22,12 @@ if [ "$HOSTNAME" == "localhost" ]; then
 fi 
 
 echo "Using $HOSTNAME as the hostname for the repo server."
+echo ""
+echo "  NOTE: This script will build an offline Repository for your HDP installation. "
+echo "  The process will consume around 35GB of space.  If your OS doesn't have at least"
+echo "  this much space available, stop the script and allocate more space"
+echo ""
+echo ""
 
 # Determine if httpd has been installed
 HTTPD=`yum list installed | grep httpd`
