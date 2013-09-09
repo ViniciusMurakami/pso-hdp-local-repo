@@ -6,6 +6,9 @@
 #  sure the hostname is correct and resolvable from ALL cluster hosts that will
 #  need this repository.
 
+# AHO.  To add to crontab and get regular update add the following to /etc/crontab
+# 0  0  *  *  0 root /[path_to_script]/local_repo_config.sh [hostname] > /[path_to_log]/update-repo-`date +"%m-%d-%Y"`.log 2>&1
+
 # Ensure script being run as root.
 if [ `whoami` != "root" ]; then
 echo "Must be root to run this script."
@@ -46,10 +49,27 @@ wget -nv http://public-repo-1.hortonworks.com/HDP/centos6/1.x/GA/1.3.0.0/hdp.rep
 
 yum repolist
 
-# Install the epel repo
-yum -y install epel-release
-yum -y install yum-utils
-yum -y install createrepo
+# Determine is epel repository is installed
+EPEL=`yum list installed | grep epel-release`
+if [ "$EPEL" == "" ]; then
+  echo 'installing epel-release'
+  yum -y install epel-release
+fi
+
+# Determine is yum-utils are installed
+# AHO Added tests before re-installing.  This script need to be added to crontab to gather updates.
+UTILS=`yum list installed | grep yum-utils`
+if [ "$UTILS" == "" ]; then
+  echo 'installing yum-utils'
+  yum -y install yum-utils
+fi
+
+# Determine is createrepo is installed
+REPO=`yum list installed | grep createrepo`
+if [ "$REPO" == "" ]; then
+  echo 'installing createrepo'
+  yum -y install createrepo
+fi
 
 # Copy the repo templates to the httpd server
 
@@ -81,13 +101,17 @@ mkdir -p $BASE_REPO_DIR/local.yum.repos.d
 rm $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
 
 # Take the ambari.repo we've downloaded and place it on the repo for distribution.
+# AHO. Removed baseurl= because need to repolace host name in both baseurl and gpgkey= fields.
 cp /etc/yum.repos.d/ambari.repo $BASE_REPO_DIR/local.yum.repos.d/
-sed -i bak -e "s:baseurl=http\://public-repo-1.hortonworks.com:baseurl=http\://$HOSTNAME/repos:g" $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
+sed -i bak -e "s:http\://public-repo-1.hortonworks.com:http\://$HOSTNAME/repos:g" $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
 
 rm $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
 wget https://raw.github.com/hortonworks/pso-hdp-local-repo/$GIT_BRANCH/templates/CentOS-Base.repo -O $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
-
 sed -i bak -e "s:!local.repo.host!:$HOSTNAME:g" $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
+
+rm $BASE_REPO_DIR/local.yum.repos.d/epel.repo
+wget https://raw.github.com/hortonworks/pso-hdp-local-repo/$GIT_BRANCH/templates/epel.repo -O $BASE_REPO_DIR/local.yum.repos.d/epel.repo
+sed -i bak -e "s:!local.repo.host!:$HOSTNAME:g" $BASE_REPO_DIR/local.yum.repos.d/epel.repo
 
 # ambari-1.x
 # baseurl=http://public-repo-1.hortonworks.com/ambari/centos6/1.x/GA
@@ -109,9 +133,9 @@ sed -i bak -e "s:!local.repo.host!:$HOSTNAME:g" $BASE_REPO_DIR/local.yum.repos.d
 # 
 # epel
 # baseurl=http://download.fedoraproject.org/pub/epel/6/$basearch (x86_64)
-# if [ ! -d  $BASE_REPO_DIR/pub/epel/6/x86_64 ]; then
-# mkdir -p $BASE_REPO_DIR/pub/epel/6/x86_64
-# fi
+if [ ! -d  $BASE_REPO_DIR/pub/epel/6/x86_64 ]; then
+  mkdir -p $BASE_REPO_DIR/pub/epel/6/x86_64
+fi
 # 
 # HDP-1.3.0.0
 # http://public-repo-1.hortonworks.com/HDP/centos6/1.x/GA/1.3.0.0
