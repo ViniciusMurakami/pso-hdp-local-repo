@@ -35,4 +35,5 @@ echo ""
 echo " Fetching the JDK for Ambari to distribute. "
 echo ""
 wget http://$1/repos/jdk/jdk-6u31-linux-x64.bin -O /var/lib/ambari-server/resources/jdk-6u31-linux-x64.bin
+wget http://$1/repos/jdk/jce_policy-6.zip -O /var/lib/ambari-server/resources/jce_policy-6.zip
 

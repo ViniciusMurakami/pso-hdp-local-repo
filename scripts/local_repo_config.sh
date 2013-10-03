@@ -91,6 +91,10 @@ if [ ! -f $BASE_REPO_DIR/jdk/jdk-6u31-linux-x64.bin ]; then
 wget -nv http://public-repo-1.hortonworks.com/ARTIFACTS/jdk-6u31-linux-x64.bin -O $BASE_REPO_DIR/jdk/jdk-6u31-linux-x64.bin
 fi
 
+if [ ! -f $BASE_REPO_DIR/jdk/jce_policy-6.zip ]; then
+wget -nv http://public-repo-1.hortonworks.com/ARTIFACTS/jce_policy-6.zip -O $BASE_REPO_DIR/jdk/jce_policy-6.zip
+fi
+
 if [ -d $BASE_REPO_DIR/local.yum.repos.d ]; then
 rm $BASE_REPO_DIR/local.yum.repos.d
 fi
