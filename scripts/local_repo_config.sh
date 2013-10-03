@@ -106,11 +106,11 @@ cp /etc/yum.repos.d/ambari.repo $BASE_REPO_DIR/local.yum.repos.d/
 sed -i bak -e "s:http\://public-repo-1.hortonworks.com:http\://$HOSTNAME/repos:g" $BASE_REPO_DIR/local.yum.repos.d/ambari.repo
 
 rm $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
-wget https://raw.github.com/hortonworks/pso-hdp-local-repo/$GIT_BRANCH/templates/CentOS-Base.repo -O $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
+wget https://raw.github.com/dstreev/hdp-local-repo/master/templates/CentOS-Base.repo -O $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
 sed -i bak -e "s:!local.repo.host!:$HOSTNAME:g" $BASE_REPO_DIR/local.yum.repos.d/CentOS-Base.repo
 
 rm $BASE_REPO_DIR/local.yum.repos.d/epel.repo
-wget https://raw.github.com/hortonworks/pso-hdp-local-repo/$GIT_BRANCH/templates/epel.repo -O $BASE_REPO_DIR/local.yum.repos.d/epel.repo
+wget https://raw.github.com/dstreev/hdp-local-repo/master/templates/epel.repo -O $BASE_REPO_DIR/local.yum.repos.d/epel.repo
 sed -i bak -e "s:!local.repo.host!:$HOSTNAME:g" $BASE_REPO_DIR/local.yum.repos.d/epel.repo
 
 # ambari-1.x
